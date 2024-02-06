@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+
+    <title>Tea Harmony</title>
+  </head>
+  <body>
+    <div id="root" className=""></div>
+
+    <!-- Scripts -->
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/peterhry/CircleType@2.3.1/dist/circletype.min.js"></script>
+
+    <script type="text/javascript" src="./src/assets/vanilla-tilt.js"></script>
+
+    <script>
+      window.addEventListener("unload", function () {
+        window.scrollTo(0, 0);
+      });
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
