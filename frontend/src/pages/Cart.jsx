@@ -1,8 +1,16 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { ShopContext } from "../Context/ShopContext";
 import { MdClear } from "react-icons/md";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
+import { IoCaretForwardCircleSharp } from "react-icons/io5";
+import gsap from "gsap";
 
 function Cart() {
   const { fetchCartValues, updateCart, clearCartData, all_product } =
@@ -12,6 +20,7 @@ function Cart() {
   const [error, setError] = useState("");
   let cartTotal = 0;
   const audio = new Audio("./assets/bill/billAudio.mp3");
+
   const [rzpAmount, setRzpAmount] = useState(0);
   const [orderData, setOrderData] = useState({
     orderId: "OTQEZ" + Math.round(Math.random() * 100000000),
@@ -21,6 +30,23 @@ function Cart() {
     pincode: "",
     total: 0,
   });
+  const comp = useRef(null);
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const tl = gsap.timeline();
+      tl.from(".move", {
+        opacity: 0,
+        x: "-=50",
+        stagger: 0.1,
+        onComplete: () => {
+          gsap.set(".move", { clearProps: "all" });
+        },
+      });
+    }, comp);
+
+    return () => ctx.revert();
+  }, []);
 
   function formatDateTime(date) {
     const options = {
@@ -77,6 +103,9 @@ function Cart() {
   const changeHandler = (e) => {
     setOrderData({ ...orderData, [e.target.name]: e.target.value });
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const getCartValues = async () => {
@@ -157,21 +186,30 @@ function Cart() {
   return (
     <>
       {/* Cart */}
-      <div className="mt-[7vh] max-w-[65vw] m-auto">
-        <div className="font-bold text-4xl pt-5 ">Order Summary</div>
+      <div ref={comp} className="mt-[7vh] md:max-w-[65vw] m-auto">
+        <div className="font-bold text-xl md:text-4xl px-1 pt-5 ">
+          Order Summary
+        </div>
         <div
-          className=" font-bold text-lg flex flex-col gap-3 min-h-[93vh] max-h-full
+          className=" font-bold md:text-lg flex flex-col gap-3 min-h-[93vh] max-h-full
      items-center "
         >
-          <div className="flex mt-2 py-2 bg-gray-200 justify-around w-full items-center gap-3">
-            <p className="w-[15vh]">Product</p>
-            <p className="w-[500px]  px-2">Name</p>
-            <p className="min-w-[80px] px-2">Quantity</p>
-            <p className="min-w-[80px]  px-2">Price</p>
-            <p>Clear</p>
+          <div className="flex mt-2 py-2 bg-gray-200 w-full items-center px-1 md:justify-around mb-3">
+            <p className="min-w-[15vh] ">Product</p>
+            <p className="w-[500px] ml-[-5vh] md:ml-[-7vh]">Name</p>
+            <p className="hidden md:block min-w-[80px] md:ml-[-3vh]">
+              Quantity
+            </p>
+            <p className="min-w-[60px] mr-[7vh]">Price</p>
+            <p className="hidden md:block">Clear</p>
           </div>
 
           {loading && <p>Loading...</p>}
+
+          {cartValues.length === 0 && (
+            <div className="text-center mt-5">No items in your cart</div>
+          )}
+
           {!loading &&
             cartValues.map((item) => {
               const product = all_product.find(
@@ -183,35 +221,42 @@ function Cart() {
               return (
                 product && (
                   <div
-                    className="flex justify-around w-full items-center gap-3"
+                    className="flex justify-around w-full md:items-center gap-1 md:gap-3 move"
                     key={item.key}
                   >
                     <img
-                      className="h-[15vh] rounded-md w-[15vh]"
+                      className="h-[10vh] min-w-[10vh] md:h-[15vh] rounded-md md:w-[15vh] object-contain"
                       src={product.img1}
                       alt="product img"
                     />
-                    <p className="w-[500px]">{product.name}</p>
+                    <p className="text-sm  md:text-lg w-[500px]">
+                      {product.name}
+                    </p>
                     {/* Quantity */}
-                    <div className="flex rounded-md px-[10px] py-1 items-center justify-between gap-2 bg-[#05B3A4] min-w-[80px]">
-                      <FaMinus
-                        className=" cursor-pointer text-sm"
-                        onClick={() => {
-                          updateCart(product.id, "dec");
-                        }}
-                      />
-                      <span>{item.value}</span>
-                      <FaPlus
-                        className=" cursor-pointer text-sm"
-                        onClick={() => {
-                          updateCart(product.id, "inc");
-                        }}
-                      />
+                    <div className="flex flex-col md:flex-row md:justify-center gap-1 md:gap-[4vw] md:items-center">
+                      <div className="flex rounded-md px-[10px] py-1 items-center justify-between gap-2 bg-[#05B3A4] min-w-[80px]">
+                        <FaMinus
+                          className=" cursor-pointer text-sm hover:scale-125 duration-200"
+                          onClick={() => {
+                            updateCart(product.id, "dec");
+                          }}
+                        />
+                        <span>{item.value}</span>
+                        <FaPlus
+                          className=" cursor-pointer text-sm hover:scale-125 duration-200"
+                          onClick={() => {
+                            updateCart(product.id, "inc");
+                          }}
+                        />
+                      </div>
+                      <p className="min-w-[60px] text-sm md:text-lg">
+                        ₹ {product.price * item.value}
+                      </p>
                     </div>
 
-                    <p className="min-w-[80px]">{product.price * item.value}</p>
                     <MdClear
-                      className="cursor-pointer text-xl"
+                      className="cursor-pointer w-24 hover:text-red-700 hover:scale-125 duration-200
+                      "
                       onClick={() => {
                         updateCart(product.id, "clear");
                       }}
@@ -220,59 +265,78 @@ function Cart() {
                 )
               );
             })}
-          <div className="border-t-[1px] border-gray-400 w-full"></div>
 
-          <div className="flex mt-2  justify-around w-full items-center gap-3">
-            <p className="w-[15vh]">Total</p>
-            <p className="w-[500px]  px-2"></p>
-            <p className="min-w-[80px] px-2"></p>
-            <p className="min-w-[80px] ml-[-10vh]  px-2">₹ {cartTotal}</p>
-            <p></p>
-          </div>
+          {cartValues.length !== 0 && (
+            <>
+              <div className="border-t-[1px] border-gray-400 w-full"></div>
 
-          <div className="border-t-[1px] border-gray-400 w-full"></div>
+              <div className="flex mt-2  justify-around w-full items-center gap-3">
+                <p className="w-[15vh] px-1">Total</p>
+                <p className="w-[500px]  px-2"></p>
 
-          <input
-            className="w-full p-2 border rounded"
-            placeholder="Enter Full Address"
-            name="full_address"
-            value={orderData.full_address}
-            onChange={changeHandler}
-          />
+                <p className="min-w-[80px] px-2"></p>
+                <p className="min-w-[80px] mr-[4vh] md:ml-[-10vh]  px-2">
+                  ₹ {cartTotal}
+                </p>
+                <p></p>
+              </div>
 
-          <input
-            className="w-full p-2 border rounded"
-            placeholder="Enter Pincode"
-            name="pincode"
-            value={orderData.pincode}
-            onChange={changeHandler}
-          />
-          {error && <div className="text-red-500 mt-2">{error}</div>}
-          <button
-            // onClick={showReciept}
-            // onClick={sendOrderData}
-            onClick={razorpayOpen}
-            className="bg-[#05B3A4]"
-          >
-            Buy now
-          </button>
+              <div className="border-t-[1px] border-gray-400 w-full"></div>
+            </>
+          )}
+
+          {cartValues.length !== 0 && (
+            <div className="w-full flex flex-col items-end gap-5 mb-20 mt-5 px-1 ">
+              <input
+                className="w-full md:w-1/2 p-2 border rounded"
+                placeholder="Enter Full Address"
+                name="full_address"
+                value={orderData.full_address}
+                onChange={changeHandler}
+              />
+
+              <input
+                className="w-full md:w-1/2 p-2 border rounded"
+                placeholder="Enter Pincode"
+                name="pincode"
+                value={orderData.pincode}
+                onChange={changeHandler}
+              />
+              {error && (
+                <div className=" w-1/2 text-center text-red-500 mt-2">
+                  {error}
+                </div>
+              )}
+              <button
+                // onClick={showReciept}
+                // onClick={sendOrderData}
+                onClick={razorpayOpen}
+                className="w-full md:w-1/2 rounded-md py-2 bg-[#05B3A4] text-xl flex justify-center items-center gap-2"
+              >
+                Buy now
+                <span className="arrow">
+                  <IoCaretForwardCircleSharp />
+                </span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Bill animation */}
       <div
         id="animateBill"
-        className=" hidden fixed top-0  z-20 bg-black text-white bg-opacity-90 w-[100vw] h-[100vh]  justify-center items-center"
+        className=" hidden fixed top-0  z-30 bg-black text-white bg-opacity-90 w-[100vw] h-[100vh]  justify-center items-center"
       >
         <img
-          className="w-[600px]  absolute bottom-0"
+          className=" w-[320px] md:w-[600px]  absolute bottom-0"
           src="./assets/bill/bill.png"
           alt=""
         />
 
         <div
           className=" 
-           absolute  bottom-[315px]  h-[50vh] overflow-hidden  w-[31vh] flex justify-center items-center  mr-[163px] "
+           absolute bottom-[168px] md:bottom-[315px]  h-[50vh] overflow-hidden bg-pink- w-[19vh]  md:w-[31vh] flex justify-center items-center mr-[85.5px] md:mr-[163px] "
         >
           <img
             src="./assets/bill/billfront.png"
@@ -280,16 +344,22 @@ function Cart() {
           />
           <div
             id="bill"
-            className="bottom-[-292px] h-[36vh] w-[200px] absolute text-black  transition-transform duration-1000 delay-1000 ease-in-out"
+            className="bottom-[-292px] h-[38vh] md:h-[36vh] w-[125px] md:w-[200px] absolute text-black  transition-transform duration-1000 delay-1000 ease-in-out"
           >
             <img className="mb-[-1px]" src="./assets/bill/billtop.png" alt="" />
-            <div className="font-sans h-full flex flex-col items-center w-full bg-white text-[12px]">
-              <p className=" font-bold text-[22px] text-center mt-2">
+            <div className="font-sans h-full flex flex-col items-center w-full bg-white  text-[12px]">
+              <p className=" font-bold text-[15px] md:text-[22px] text-center mt-2">
                 TEA HARMONY
               </p>
-              <p>* * * * * * * * * * * * * * * * * * * *</p>
+              <p>* * * * * * * * * * * * * *</p>
+              <p className="hidden md:block">
+                * * * * * * * * * * * * * * * * * * * *
+              </p>
               <p>CASH RECEIPT</p>
-              <p>* * * * * * * * * * * * * * * * * * * *</p>
+              <p>* * * * * * * * * * * * * *</p>
+              <p className="hidden md:block">
+                * * * * * * * * * * * * * * * * * * * *
+              </p>{" "}
               <NavLink to="/">
                 <div className="hover:underline hover:scale-[1.15] duration-300 cursor-pointer my-1 font-bold">
                   Back to Home
@@ -300,15 +370,23 @@ function Cart() {
                   Go to Orders
                 </div>
               </NavLink>
-
-              <p>* * * * * * * * * * * * * * * * * * * *</p>
+              <p>* * * * * * * * * * * * * *</p>
+              <p className="hidden md:block">
+                * * * * * * * * * * * * * * * * * * * *
+              </p>{" "}
               <div>
+                Total &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ₹
+                {cartTotal}
+              </div>
+              <div className="hidden md:block">
                 Total &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ₹ {cartTotal}
               </div>
-              <p>* * * * * * * * * * * * * * * * * * * *</p>
+              <p>* * * * * * * * * * * * * *</p>
+              <p className="hidden md:block">
+                * * * * * * * * * * * * * * * * * * * *
+              </p>{" "}
               <p>THANK YOU</p>
-
               <img className="w-[120px] mt-2" src="./assets/bill/barcode.png" />
             </div>
           </div>

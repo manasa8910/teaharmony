@@ -3,8 +3,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useLayoutEffect, useRef } from "react";
 import Button from "./Button";
 
-import TextPlugin from "gsap/TextPlugin";
-
 const teaWareCategories = [
   "Ceramic",
   "Porcelain",
@@ -25,61 +23,6 @@ const teaCategories = [
   "Green",
   "Flower",
   "English",
-];
-
-const teaWareCards = [
-  {
-    productId: 23,
-    img: "./assets/cards/p23_3.jpg",
-    name: "Ceramic Tea set",
-    price: "5999",
-  },
-  {
-    productId: 12,
-    img: "./assets/cards/p12_3.jpg",
-    name: "Glass Teapot, Stainless Steel Infuser",
-    price: "6999",
-  },
-  {
-    productId: 18,
-    img: "./assets/cards/p18_1.jpg",
-    name: "Kiln Altered Glaze Porcelain Tea Set",
-    price: "6999",
-  },
-  {
-    productId: 19,
-    img: "./assets/cards/p19_1.jpg",
-    name: "Portable Gongfu Tea Set",
-    price: "7999",
-  },
-];
-
-const teaCards = [
-  {
-    productId: 42,
-    img: "./assets/cards/p42_1.jpg",
-    name: "berry creme compote",
-    price: "600",
-  },
-  {
-    productId: 52,
-    img: "./assets/cards/p52_1.jpg",
-    name: "matcha",
-    price: "400",
-  },
-
-  {
-    productId: 40,
-    img: "./assets/cards/p40_1.jpg",
-    name: "blood orange",
-    price: "400",
-  },
-  {
-    productId: 37,
-    img: "./assets/cards/p37_1.jpg",
-    name: "mindful mint chai",
-    price: "500",
-  },
 ];
 
 function Hero5() {
@@ -105,7 +48,6 @@ function Hero5() {
     });
 
     gsap.registerPlugin(ScrollTrigger);
-    gsap.registerPlugin(TextPlugin);
 
     let ctx = gsap.context(() => {
       gsap.to("#clipPath", {
@@ -131,28 +73,13 @@ function Hero5() {
         duration: 0.5,
         opacity: 0,
         x: -30,
-        // stagger: 0.2,
         scrollTrigger: {
           trigger: "#clipPath",
           start: "0% 50%",
           end: "200% 100%",
-          toggleActions: "play reverse play reverse",
+          toggleActions: "play none none reverse",
 
           //markers: true,
-        },
-      });
-      gsap.from(".move", {
-        duration: 0.5,
-        opacity: 0,
-        x: -30,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: "#clipPath",
-          start: "0% 50%",
-          end: "200% 100%",
-          toggleActions: "play reverse play reverse",
-
-          // markers: true,
         },
       });
 
@@ -175,7 +102,7 @@ function Hero5() {
 
     circles.forEach((circle) => {
       const onMouseEnter = () => {
-        gsap.to(circle, { scale: 1.1, duration: 0.3 });
+        gsap.to(circle, { scale: 1.2, duration: 0.3 });
       };
 
       const onMouseLeave = () => {
@@ -187,6 +114,7 @@ function Hero5() {
     });
     return () => ctx.revert();
   }, []);
+
   return (
     <div className="w-full h-[186vh]">
       <div ref={comp} className="text-white absolute w-full h-[93vh]">
@@ -195,64 +123,46 @@ function Hero5() {
           <div className="w-full h-full">
             <div
               id="typeWritter"
-              className="text-4xl font-semibold text-center pb-[2vh] pt-[1vh]"
+              className="text-2xl md:text-4xl font-semibold text-center md:pb-[2vh] pt-[1vh] md:pt-[3vh]"
             ></div>
-            <div className="text-xl pb-[1vh] text-center move">
+            <div className="md:text-xl pb-[1vh] md:pb-[3vh] text-center circle">
               Shop By Category
             </div>
 
             {/* circles */}
-            <div className="flex gap-10 flex-wrap  justify-center items-center  pb-[2vh]">
-              {teaWareCategories.map((category, index) => (
-                <div
-                  key={index}
-                  className="bg-[#202020] h-[24vh] w-[17vh] rounded-t-[17vh] rounded-b-[5vh] text-center flex flex-col justify-between cursor-pointer
-                   duration-200 circle"
-                >
-                  <div className="pt-1 font-semibold" id={`${category}`}>
-                    {category}
-                  </div>
-                  <img
-                    className=" object-cover"
-                    src={`./assets/category/TeaWare_${category}.png`}
-                    alt="category"
-                  />
-                </div>
-              ))}
-            </div>
-
-            <div className="text-xl pb-[2vh] text-center move">
-              Featured Products
-            </div>
-
-            {/* Cards */}
-            <div className="flex gap-20 justify-center flex-wrap">
-              {teaWareCards.map((card) => (
-                <div
-                  key={card.productId}
-                  className="relative w-[35vh] h-[40vh] rgb tilt cursor-pointer transform-style-3d move"
-                >
-                  <div className=" absolute top-0 left-0 w-full h-full ">
+            <div className="flex justify-center">
+              <div className="grid grid-cols-2  md:grid-cols-4 gap-3 md:gap-12 md:gap-x-20 gap-x-10 md:justify-center items-center pb-[2vh]">
+                {teaWareCategories.map((category, index) => (
+                  <div
+                    key={index}
+                    className="bg-[#202020] h-[18vh] w-[16vh]
+                     rounded-t-[16vh]
+                    rounded-b-[3vh]
+                    md:h-[24vh] md:w-[17vh] 
+                    md:rounded-t-[17vh] md:rounded-b-[5vh] text-center flex flex-col justify-between overflow-hidden items-center cursor-pointer
+                    duration-200 circle"
+                  >
+                    <div
+                      className="pt-1 font-semibold text-sm md:text-base"
+                      id={`${category}`}
+                    >
+                      {category}
+                    </div>
                     <img
-                      className="h-full object-cover rounded-lg translate-z-5"
-                      src={card.img}
-                      alt="img"
+                      className="object-cover mt-[-20%] w-[90%] md:w-full md:mt-[0%]"
+                      src={`./assets/category/TeaWare_${category}.png`}
+                      alt="category"
                     />
                   </div>
-                  <div className="contentBx p-2">
-                    <div className="mx-4 font-semibold text-lg leading-5">
-                      {card.name}
-                    </div>
-                    <div className="mx-4 mt-2 text-sm">₹ {card.price}</div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-            <div className="text-sm font-normal w-full text-center  scrollDown mt-[5vh]">
-              Scroll Down ￬
-            </div>
-            <div className="w-[100vw] text-right mt-[-5vh] pr-[10vw]">
+
+            <div className="hidden md:block w-[100vw] text-center mt-[3vh]">
               <Button text="View All" />
+            </div>
+            <div className="hidden md:block text-sm font-normal w-full text-center mt-[7vh] scrollDown">
+              Scroll Down ￬
             </div>
           </div>
         </div>
@@ -263,60 +173,46 @@ function Hero5() {
           className=" absolute w-full h-full z-[1]"
         >
           <div className="w-full h-full">
-            <div className="text-4xl font-semibold text-center pt-[1vh] pb-[2vh]">
+            <div className="text-2xl md:text-4xl font-semibold text-center md:pb-[2vh] pt-[1vh] md:pt-[3vh]">
               Tea Collections
             </div>
-            <div className="text-xl pb-[1vh] text-center">Shop By Category</div>
+            <div className="md:text-xl pb-[1vh] text-center md:pb-[3vh]">
+              Shop By Category
+            </div>
 
             {/* circles */}
-            <div className="flex gap-10 flex-wrap  justify-center items-center pb-[2vh] cursor-pointer">
-              {teaCategories.map((category, index) => (
-                <div
-                  key={index}
-                  className="bg-white h-[24vh] w-[17vh] rounded-t-[17vh] rounded-b-[5vh] text-center text-black flex flex-col justify-between hover:scale-110 hover:brightness-100 duration-200 overflow-hidden brightness-[90%]"
-                >
-                  <div className="pt-1 z-10 font-bold" id={`${category}`}>
-                    {category}
-                  </div>
-                  <img
-                    className="h-full object-cover scale-[1.4]"
-                    src={`./assets/category/Tea_${category}.jpg`}
-                    alt="category"
-                  />
-                </div>
-              ))}
-            </div>
-
-            <div className="text-xl pb-[2vh] text-center">
-              Featured Products
-            </div>
-
-            {/* Cards */}
-            <div className="flex gap-20 justify-center flex-wrap">
-              {teaCards.map((card) => (
-                <div
-                  key={card.productId}
-                  className="relative w-[35vh] h-[40vh]  tilt cursor-pointer transform-style-3d"
-                >
-                  <div className=" absolute top-0 left-0 w-full h-full ">
+            <div className="flex justify-center">
+              <div className="grid grid-cols-2  md:grid-cols-4 gap-3 md:gap-12 md:gap-x-20 gap-x-10 md:justify-center items-center pb-[2vh]">
+                {teaCategories.map((category, index) => (
+                  <div
+                    key={index}
+                    className="bg-white h-[18vh] w-[16vh]
+                  rounded-t-[16vh]
+                 rounded-b-[3vh]
+                 md:h-[24vh] md:w-[17vh] 
+                 md:rounded-t-[17vh] md:rounded-b-[5vh]  text-center text-black flex flex-col justify-between items-center hover:scale-125 hover:brightness-100 duration-300 overflow-hidden brightness-[90%]"
+                  >
+                    <div
+                      className="pt-1 font-bold text-sm md:text-base z-10 "
+                      id={`${category}`}
+                    >
+                      {category}
+                    </div>
                     <img
-                      className="h-full object-cover rounded-lg translate-z-5"
-                      src={card.img}
-                      alt="img"
+                      className="h-full object-cover  w-[90%] md:w-full md:mt-[0%] scale-[1.4]"
+                      src={`./assets/category/Tea_${category}.jpg`}
+                      alt="category"
                     />
                   </div>
-                  <div className="contentBx p-2">
-                    <div className="mx-4 font-semibold text-lg leading-5">
-                      {card.name}
-                    </div>
-                    <div className="mx-4 mt-2 text-sm">₹ {card.price}</div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>{" "}
             </div>
 
-            <div className="w-[100vw] text-right mt-[2.5vh] pr-[10vw]">
+            <div className="hidden md:block w-[100vw] text-center mt-[3vh]">
               <Button text="View All" />
+            </div>
+            <div className="hidden md:block text-sm font-normal w-full text-center mt-[7vh] scrollDown">
+              Scroll Down ￬
             </div>
           </div>
         </div>

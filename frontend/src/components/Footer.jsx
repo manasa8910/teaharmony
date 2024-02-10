@@ -84,8 +84,10 @@ function Footer() {
               className="w-full h-8 p-2 border rounded mb-2"
             />
             <button
-              type="submit"
-              className="bg-green h-8 text-white px-2  rounded hover:bg-red-800 w-full sm:w-auto"
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+              className=" bg-green-950 h-8 text-white px-2  rounded hover:bg-green-900 w-full sm:w-auto"
             >
               Subscribe
             </button>

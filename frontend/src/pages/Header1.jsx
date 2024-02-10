@@ -22,6 +22,8 @@ function Header1() {
     };
     // Call the function to fetch login status
     fetchLoginStatus();
+
+    window.scrollTo(0, 0);
   }, []);
 
   const { totalCartSum } = useContext(ShopContext); // Access totalCartSum and authToken from the context
@@ -127,27 +129,29 @@ function Header1() {
     <>
       <div
         ref={comp}
-        className="h-[7vh] flex justify-between text-white fixed w-full top-0 font-bold shadow-xl bg-black px-3 z-20"
+        className="h-[7vh] flex justify-between text-white fixed w-full top-0 font-bold shadow-xl bg-black px-3 z-40"
       >
         <div className="flex items-center gap-5">
-          <img
-            id="logo"
-            className="h-[6vh] rounded-[50%] cursor-pointer"
-            src="/assets/logo.png"
-            alt="logo"
-          />
-          <div id="brand-name" className="text-2xl">
+          <NavLink to="/">
+            <img
+              id="logo"
+              className="h-[6vh] rounded-[50%] cursor-pointer"
+              src="/assets/logo.png"
+              alt="logo"
+            />
+          </NavLink>
+          <div id="brand-name" className="hidden md:block text-2xl">
             TEA HARMONY
           </div>
         </div>
         <div className="flex items-center text-4xl gap-5">
-          <div ref={login} className="login">
+          <div ref={login} className="hidden md:block login">
             <AuthPopup />
           </div>
 
           {isLogin && (
             <NavLink to="/cart">
-              <div className="relative">
+              <div className="hidden md:block relative">
                 <BsBasket className=" cursor-pointer h-[4vh]" id="cart-icon" />
                 <div className=" text-base absolute top-0 right-0 bg-[#05B3A4] font-mono mr-[-12px] mt-[-5px] h-6 w-6 text-black text-center rounded-[50%]">
                   {totalCartSum}
@@ -164,10 +168,17 @@ function Header1() {
       {/* nav menu */}
       <div
         ref={navigationMenu}
-        className="h-[93vh] w-[100vw]   overflow-hidden bg-green fixed bottom-0 z-50  left-[100vw]  transform  ease-in-out duration-500"
+        className="h-[93vh] w-[100vw]   overflow-hidden bg-green-950 fixed bottom-0 z-50  left-[100vw]  transform ease-in-out duration-500"
       >
+        <video
+          className=" absolute w-full h-full object-cover"
+          src="/assets/videos/sea.mp4"
+          autoPlay
+          muted
+          loop
+        ></video>
         <div className="overflow-hidden w-full h-full mt-4">
-          <div className=" m-auto w-1/2  relative perspective-[200px]">
+          <div className="m-auto w-1/2  relative perspective-[200px]">
             <div
               onClick={handleButtonEvent}
               ref={img1}
@@ -178,9 +189,9 @@ function Header1() {
                   <div className="tag font-bold italic">Home</div>
                 </div>
                 <img
-                  className=" h-[500px] w-[800px] object-cover"
-                  src="../../assets/navImages/OIG.jpeg"
-                  alt=""
+                  className=" h-[500px] w-[900px] object-contain object-top"
+                  src="/assets/nav/home.png"
+                  alt="home"
                 />
               </NavLink>
             </div>
@@ -195,9 +206,9 @@ function Header1() {
                   <div className="tag font-bold italic">Tea Collections</div>
                 </div>
                 <img
-                  className=" h-[500px] w-[800px] object-cover"
-                  src="../../assets/navImages/OIG.jpeg"
-                  alt=""
+                  className=" h-[500px] w-[900px] object-contain object-top"
+                  src="/assets/nav/tea.png"
+                  alt="tea"
                 />
               </NavLink>
             </div>
@@ -212,9 +223,9 @@ function Header1() {
                   <div className="tag font-bold italic">Teaware</div>
                 </div>
                 <img
-                  className=" h-[500px] w-[800px] object-cover"
-                  src="../../assets/navImages/OIG.jpeg"
-                  alt=""
+                  className=" h-[500px] w-[900px] object-contain object-top"
+                  src="/assets/nav/teaware.png"
+                  alt="teaware"
                 />
               </NavLink>
             </div>
@@ -228,9 +239,9 @@ function Header1() {
                   <div className="tag font-bold italic">About Us</div>
                 </div>
                 <img
-                  className=" h-[500px] w-[800px] object-cover"
-                  src="../../assets/navImages/OIG.jpeg"
-                  alt=""
+                  className=" h-[500px] w-[900px] object-contain object-top"
+                  src="/assets/nav/about.png"
+                  alt="about"
                 />
               </NavLink>
             </div>

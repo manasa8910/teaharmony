@@ -92,18 +92,21 @@ function Hero2() {
     return () => ctx.revert();
   }, []);
   return (
-    <div ref={comp} className="h-[50vh] text-gray-300  w-full text-center p-36">
-      <div className="font-bold text-5xl pb-5">
-        <div className="para1 inline-block">Discover </div>{" "}
-        <div className="para2 inline-block">the </div>{" "}
+    <div
+      ref={comp}
+      className="h-[50vh] text-gray-300  w-full text-center py-36"
+    >
+      <div className="font-bold text-3xl lg:text-5xl lg:pb-5">
+        <div className="para1 inline-block">Discover&nbsp;</div>
+        <div className="para2 inline-block">the&nbsp;&nbsp;</div>
         <div className="para3 inline-block">Art</div>
       </div>
-      <div className="font-bold text-5xl pb-5">
-        <div className="para4 inline-block">of </div>{" "}
-        <div className="para5 inline-block">Tea </div>{" "}
+      <div className="font-bold text-3xl lg:text-5xl pb-5">
+        <div className="para4 inline-block">of&nbsp;</div>
+        <div className="para5 inline-block">Tea&nbsp;</div>
         <div className="para6 inline-block">Elegance</div>
       </div>
-      <p className="font-semibold text-2xl para7 pb-5">
+      <p className="font-semibold  lg:text-2xl para7 pb-5">
         Indulge in a Symphony of Flavors and Aromas
       </p>
       <div className="para8">

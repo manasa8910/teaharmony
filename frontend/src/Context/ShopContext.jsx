@@ -85,6 +85,32 @@ const ShopContextProvider = (props) => {
     }
   };
 
+  const fetchOrderValues = async () => {
+    if (authToken) {
+      try {
+        const response = await fetch("http://localhost:4000/user", {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "auth-token": authToken,
+          },
+        });
+
+        if (response.ok) {
+          const userData = await response.json();
+          return userData.orderData || {};
+          //loop through cart data
+        } else {
+          console.error("Failed to fetch order data");
+        }
+      } catch (error) {
+        console.error("Error fetching  order Values:", error);
+      }
+    } else {
+      prompt("please Sign in");
+    }
+  };
+
   useEffect(() => {
     fetchTotalCartSum();
   }, [authToken]);
@@ -228,6 +254,7 @@ const ShopContextProvider = (props) => {
     loading,
     totalCartSum, // Add totalCartSum to the context value
     fetchCartValues,
+    fetchOrderValues,
     clearCartData,
     fetchTotalCartSum,
   };

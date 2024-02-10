@@ -6,60 +6,26 @@ function Hero() {
       {/* hero left*/}
       <div className="hidden lg:absolute lg:h-full lg:w-[24.5%] lg:flex lg:flex-col lg:overflow-hidden lg:bg-[#ffffff]">
         <div className="scroll-content1">
-          <img
-            className="w-full object-cover "
-            src="../../assets/navImages/OIG.jpeg"
-            alt=""
-          />
-          <img src="../../assets/navImages/OIG (2).jpeg" alt="" />
-          <img src="../../assets/navImages/OIG (3).jpeg" alt="" />
-          <img
-            className="w-full object-cover  mb-[10px]"
-            src="../../assets/navImages/OIG (4).jpeg"
-            alt=""
-          />
-          <img
-            className="w-full object-cover "
-            src="../../assets/navImages/OIG.jpeg"
-            alt=""
-          />
-          <img src="../../assets/navImages/OIG (2).jpeg" alt="" />
-          <img src="../../assets/navImages/OIG (3).jpeg" alt="" />
-          <img
-            className="w-full object-cover  mb-[10px]"
-            src="../../assets/navImages/OIG (4).jpeg"
-            alt=""
-          />
+          <img src="/assets/gallery/gallery1.jpeg" />
+          <img src="/assets/gallery/gallery2.jpeg" />
+          <img src="/assets/gallery/gallery3.jpeg" />
+          <img src="/assets/gallery/gallery4.jpeg" />
+          <img src="/assets/gallery/gallery5.jpeg" />
+          <img src="/assets/gallery/gallery6.jpeg" />
+          <img src="/assets/gallery/gallery7.jpeg" />
         </div>
       </div>
 
       {/* hero right*/}
       <div className="hidden lg:absolute lg:h-full lg:w-[24.2%] lg:flex lg:flex-col lg:right-2 lg:overflow-hidden lg:bg-[#ffffff]">
         <div className="scroll-content2">
-          <img
-            className="w-full object-cover "
-            src="../../assets/navImages/OIG.jpeg"
-            alt=""
-          />
-          <img src="../../assets/navImages/OIG (2).jpeg" alt="" />
-          <img src="../../assets/navImages/OIG (3).jpeg" alt="" />
-          <img
-            className="w-full object-cover  mb-[10px]"
-            src="../../assets/navImages/OIG (4).jpeg"
-            alt=""
-          />
-          <img
-            className="w-full object-cover "
-            src="../../assets/navImages/OIG.jpeg"
-            alt=""
-          />
-          <img src="../../assets/navImages/OIG (2).jpeg" alt="" />
-          <img src="../../assets/navImages/OIG (3).jpeg" alt="" />
-          <img
-            className="w-full object-cover  mb-[10px]"
-            src="../../assets/navImages/OIG (4).jpeg"
-            alt=""
-          />
+          <img src="/assets/gallery/gallery8.jpeg" />
+          <img src="/assets/gallery/gallery9.jpeg" />
+          <img src="/assets/gallery/gallery10.jpeg" />
+          <img src="/assets/gallery/gallery11.jpeg" />
+          <img src="/assets/gallery/gallery12.jpeg" />
+          <img src="/assets/gallery/gallery13.jpeg" />
+          <img src="/assets/gallery/gallery14.jpeg" />
         </div>
       </div>
 
@@ -115,14 +81,14 @@ function Hero() {
           src="../../assets/parallax/parallax9.png"
           alt=""
         />
-        <div className=" flex flex-col justify-center items-center gap-2  pb-60 text-[#1A3838]">
-          <div className="text-3xl italic font-bold">
-            Discover the Art of Tea Elegance
+        <div className=" flex flex-col justify-center items-center gap-1 md:gap-2  pb-60 text-[#1A3838]">
+          <div className=" text-2xl md:text-3xl italic font-bold">
+            Savor Serenity in Every Sip
           </div>
-          <div className="text-xl italic font-semibold">
-            Indulge in a Symphony of Flavors and Aromas
+          <div className="text-lg md:text-xl italic font-bold md:font-semibold">
+            Unwind and Infuse Life with Every Steep
           </div>
-          <button className="text-xl italic font-semibold border-[1px]  rounded border-black px-4 py-1">
+          <button className="text-xl italic font-semibold border-[1px]  rounded border-[#1A3838] hover:text-white hover:bg-[#1A3838] px-4 py-1">
             Explore Our Collection
           </button>
         </div>

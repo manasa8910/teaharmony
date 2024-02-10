@@ -194,7 +194,7 @@ const ThreeJsCanvas = () => {
     camera.position.z = 5;
 
     const loader1 = new RGBELoader();
-    loader1.load("./assets/farm_sunset_1k.hdr", function (texture) {
+    loader1.load("/assets/farm_sunset_1k.hdr", function (texture) {
       texture.mapping = THREE.EquirectangularReflectionMapping;
       //scene.background = texture;
       scene.environment = texture;

@@ -20,10 +20,15 @@ body {
 button:hover {
   cursor: pointer;
 }
-/* trapezoid */
 
+input:focus {
+  outline: none !important;
+  border-color: #05b3a4;
+}
+
+/* trapezoid */
 .tag {
-  border-bottom: 25px solid pink;
+  border-bottom: 25px solid #05b3a4;
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
   height: 0;
@@ -48,7 +53,7 @@ button:hover {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-78%);
+    transform: translateY(-74%);
   }
 }
 .scroll-content2 {
@@ -59,7 +64,7 @@ button:hover {
 }
 @keyframes slider2 {
   0% {
-    transform: translateY(-78%);
+    transform: translateY(-74%);
   }
   100% {
     transform: translateY(0);
@@ -122,11 +127,6 @@ button:hover {
 
 .star-container {
   display: flex;
-}
-
-.star {
-  font-size: 0.8em; /* Adjust the size of the stars */
-  margin-right: 2px; /* Adjust the space between stars */
 }
 
 /* button glow effect */
@@ -255,14 +255,14 @@ button:hover {
   }
 }
 
-/*waave animation*/
+/*wave animation*/
 .stroke {
   color: transparent;
-  -webkit-text-stroke: 2px #05b3a4;
+  -webkit-text-stroke: 2px #e5e5e5;
 }
 
 .wave-animate {
-  color: #05b3a4;
+  color: #e5e5e5;
   animation: wave 4s ease-in-out infinite;
 }
 
@@ -302,12 +302,12 @@ button:hover {
   transition: clip-path 1s;
 }
 /* css gradient */
-#top {
+/* #top {
   background-image: linear-gradient(black, #202020);
 }
 #bottom {
   background-image: linear-gradient(#202020, black);
-}
+} */
 
 /* card tilt dropdown */
 .contentBx {
@@ -322,8 +322,17 @@ button:hover {
   transition: 0.5s;
   transform-style: preserve-3d;
 }
-.tilt:hover .contentBx {
-  transform: translateZ(20px) scaleY(1);
+@media (min-width: 1024px) {
+  .tilt:hover .contentBx {
+    transform: translateZ(20px) scaleY(1);
+  }
+}
+
+/* For screens smaller than LG */
+@media (max-width: 1023px) {
+  .tilt .contentBx {
+    transform: translateZ(20px) scaleY(1);
+  }
 }
 
 .tilt div {
@@ -331,7 +340,7 @@ button:hover {
     linear-gradient(transparent, transparent, #0002);
 }
 
-/* rgb glow */
+/* rgb glow
 .rgb::after {
   content: "";
   background: linear-gradient(
@@ -353,7 +362,7 @@ button:hover {
   inset: -4px;
   border-radius: 10px;
   filter: blur(8px);
-  transform: translateZ(-1px); /*or z-index */
+  transform: translateZ(-1px); 
   animation: rgb 6s linear infinite;
 }
 @keyframes rgb {
@@ -366,7 +375,7 @@ button:hover {
   100% {
     background-position: 0% 50%;
   }
-}
+} */
 
 /* Footer */
 .wave {
@@ -518,4 +527,91 @@ button:hover {
 #bill {
   animation: slideIn 2s forwards;
   animation-delay: 1s; /* Adjust the delay as needed */
+}
+
+/* Flip cards */
+.flipOnScroll {
+  transform: rotateY("180deg");
+}
+
+/* arrow side animation */
+.arrow {
+  animation: slide 1s ease-in-out infinite;
+}
+
+@keyframes slide {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(10px, 0);
+  }
+}
+
+/* smoke */
+.smoke {
+  position: absolute;
+  object-fit: cover;
+  height: 94vh;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* wave gradient */
+
+.waveBg {
+  background: linear-gradient(90deg, #454545, #707070),
+    url("https://images.unsplash.com/photo-1567922045116-2a00fae2ed03?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-blend-mode: screen;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* drop */
+.drop {
+  box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05),
+    25px 35px 20px rgba(0, 0, 0, 0.05), 25px 30px 30px rgba(0, 0, 0, 0.05),
+    inset -20px -20px 25px rgba(255, 255, 255, 0.9);
+  transition: all 0.2s linear;
+}
+
+.drop:nth-child(1) {
+  border-radius: 57% 43% 43% 57% / 43% 43% 57% 57%;
+}
+.drop:nth-child(2) {
+  border-radius: 61% 39% 52% 48% / 44% 59% 41% 56%;
+}
+.drop:nth-child(3) {
+  border-radius: 35% 65% 31% 69% / 57% 59% 41% 43%;
+}
+
+.drop:hover {
+  border-radius: 50%;
+}
+
+.drop::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 85px;
+  width: 35px;
+  height: 35px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.9;
+}
+.drop::after {
+  content: "";
+  position: absolute;
+  top: 90px;
+  left: 110px;
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.9;
 }

@@ -12,7 +12,11 @@ const StarRating = ({ rating, totalStars = 5 }) => {
 
   const renderStars = (count, type) => {
     return [...Array(count)].map((_, index) => (
-      <FontAwesomeIcon key={index} icon={type} className="star" />
+      <FontAwesomeIcon
+        key={index}
+        icon={type}
+        className="text-sm lg:text-base"
+      />
     ));
   };
 
@@ -23,7 +27,9 @@ const StarRating = ({ rating, totalStars = 5 }) => {
       </div>
       <div className="star-container text-yellow-400">
         {renderStars(fullStars, solidStar)}
-        {hasHalfStar && <FontAwesomeIcon icon={halfStar} className="star" />}
+        {hasHalfStar && (
+          <FontAwesomeIcon icon={halfStar} className="text-sm lg:text-base" />
+        )}
       </div>
     </div>
   );

@@ -36,83 +36,53 @@ function Hero4() {
       <div className="marquee text-xl para">
         <div className="marquee__item">
           Small Batch Blends
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
           Trusted by 100k+ Customers
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
           Whole leaf Teas
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
           Certified Plastic neutral
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
           100% natural ingredients
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
           Shipping worldwide
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
-          30K+ Verified Reviews{" "}
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
+          30K+ Verified Reviews <span className="marquee__seperator"></span>
         </div>
         <div className="marquee__item">
           Small Batch Blends
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
           Trusted by 100k+ Customers
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
           Whole leaf Teas
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
           Certified Plastic neutral
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
           100% natural ingredients
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
           Shipping worldwide
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
-          30K+ Verified Reviews{" "}
-          <span className="marquee__seperator">
-            <MdOutlineEmojiFoodBeverage />
-          </span>
+          <span className="marquee__seperator"></span>
+          30K+ Verified Reviews <span className="marquee__seperator"></span>
         </div>
       </div>
-      <div className="absolute right-0 w-1/2 pl-[10vh]  pt-[20vh] para">
-        <p className=" text-2xl pr-[10vw]  pb-10">
+      <div className="absolute text-justify right-0 w-full md:w-1/2 px-[3vh] md:pl-[10vh] pt-[8vh] font-semibold  md:pt-[20vh] para">
+        <p className=" text-xl md:text-2xl md:pr-[10vw]  pb-10">
           Our curated teaware collection blends elegance with functionality,
           making each sip a delightful experience. Each product is a story
           waiting to be told, and your journey begins with a single click.
         </p>
-        <div className="flex gap-5 pb-10">
+        <div className="text-white flex gap-5 mb-10 bg-black bg-opacity-35 rounded-lg p-2 md:bg-none text-center md:text-left ">
           <div>
-            <div className="text-4xl text-left para">150+</div>
+            <div className="text-4xl  para">150+</div>
             <div className="text-xl">Unique Designs</div>
           </div>
           <div className="para border-l-[1px]"></div>
           <div>
-            <div className="text-4xl text-left para">1 Cr+</div>
+            <div className="text-4xl para">1 Cr+</div>
             <div className="text-xl">Cups of Tea Brewed</div>
           </div>
         </div>
-        <div className="para">
+        <div className="para text-center md:text-left">
           <Button text="View Our Gallery" />
         </div>
       </div>

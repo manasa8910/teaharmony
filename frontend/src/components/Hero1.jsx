@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
@@ -7,12 +7,40 @@ gsap.registerPlugin(ScrollTrigger);
 function Hero1() {
   const comp = useRef(null);
 
+  const [allowScroll, setAllowScroll] = useState(false);
+
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      gsap.from(".title", {
+      gsap.from(".title1 span ", {
         opacity: 0,
-        y: -30,
-        duration: 1,
+        x: "-=30",
+        stagger: 0.3,
+        duration: 2,
+        delay: 1,
+      });
+
+      gsap.from(".title2 span ", {
+        opacity: 0,
+        x: "-=30",
+        stagger: 0.3,
+        duration: 2,
+        delay: 1,
+      });
+
+      gsap.from(".title3 span ", {
+        opacity: 0,
+        x: "-=30",
+        stagger: 0.3,
+        duration: 2,
+        delay: 1,
+      });
+
+      gsap.from(".title4 span ", {
+        opacity: 0,
+        x: "-=30",
+        stagger: 0.3,
+        duration: 2,
+        delay: 1,
       });
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -46,15 +74,42 @@ function Hero1() {
       yoyo: true,
     });
 
+    const videos = document.querySelectorAll(".smoke");
+    videos.forEach((video) => {
+      video.playbackRate = 1.5;
+      video.addEventListener("ended", () => {
+        setAllowScroll(true);
+      });
+    });
+
     return () => ctx.revert();
   }, []);
+
+  useEffect(() => {
+    if (!allowScroll) {
+      window.scrollTo(0, 0);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [allowScroll]);
+
   return (
     <>
-      <div ref={comp} className="h-[94vh]  text-white w-full  overflow-hidden">
+      <div
+        ref={comp}
+        className="h-[94vh] text-white w-full  overflow-hidden relative"
+      >
         <div
           id="top"
           className="w-full h-[47vh] absolute top-0 z-10 overflow-hidden"
         >
+          <video
+            className="smoke top-0"
+            src="/assets/videos/smoke.mp4"
+            autoPlay
+            muted
+          ></video>
           <div
             className="absolute top-[50%] left-1/2 font-black transform translate-x-[-50%] translate-y-[-50%] mt-[25.5vh] font-sans "
             style={{
@@ -62,26 +117,82 @@ function Hero1() {
               whiteSpace: "nowrap",
             }}
           >
-            <div className=" absolute stroke title"> TEA HARMONY</div>
-            <div className=" wave-animate title"> TEA HARMONY</div>
+            <div className=" absolute stroke title1 ">
+              <span>T</span>
+              <span>E</span>
+              <span>A</span>
+              <span> </span>
+              <span>H</span>
+              <span>A</span>
+              <span>R</span>
+              <span>M</span>
+              <span>O</span>
+              <span>N</span>
+              <span>Y</span>
+            </div>
+            <div className=" wave-animate title2">
+              <span>T</span>
+              <span>E</span>
+              <span>A</span>
+              <span> </span>
+              <span>H</span>
+              <span>A</span>
+              <span>R</span>
+              <span>M</span>
+              <span>O</span>
+              <span>N</span>
+              <span>Y</span>
+            </div>
           </div>
         </div>
-        <div id="center" className=" w-full bg-none relative ">
+
+        <div id="center" className=" w-full bg-none relative">
           <div className="h-[0vh] w-full "></div>
         </div>
+
         <div
           id="bottom"
           className="h-[47vh] w-full absolute bottom-0 overflow-hidden"
         >
+          <video
+            className="smoke bottom-0"
+            src="/assets/videos/smoke.mp4"
+            autoPlay
+            muted
+          ></video>
           <div
-            className="absolute  top-1/2 left-1/2  font-black transform translate-x-[-50%] translate-y-[-50%] mt-[-21.5vh] font-sans "
+            className="absolute top-1/2 left-1/2  font-black transform translate-x-[-50%] translate-y-[-50%] mt-[-21.5vh] font-sans "
             style={{
               fontSize: "clamp(40px, 9vw + 1rem, 300px)",
               whiteSpace: "nowrap",
             }}
           >
-            <div className=" absolute stroke title"> TEA HARMONY</div>
-            <div className=" wave-animate title"> TEA HARMONY</div>
+            <div className=" absolute stroke title3">
+              <span>T</span>
+              <span>E</span>
+              <span>A</span>
+              <span> </span>
+              <span>H</span>
+              <span>A</span>
+              <span>R</span>
+              <span>M</span>
+              <span>O</span>
+              <span>N</span>
+              <span>Y</span>
+            </div>
+            <div className=" wave-animate title4">
+              <span>T</span>
+              <span>E</span>
+              <span>A</span>
+              <span> </span>
+              <span>H</span>
+              <span>A</span>
+              <span>R</span>
+              <span>M</span>
+              <span>O</span>
+              <span>N</span>
+              <span>Y</span>
+            </div>
             <div className="text-sm font-normal w-full text-center absolute mt-[20vh] scrollDown">
               Scroll Down ￬
             </div>

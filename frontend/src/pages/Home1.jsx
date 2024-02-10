@@ -8,6 +8,8 @@ import Hero4 from "../components/Hero4";
 import Hero5 from "../components/Hero5";
 import ScrollProgressBar from "../components/ScrollProgressBar";
 import { ShopContext } from "../Context/ShopContext";
+import Hero6 from "../components/Hero6";
+import CardWithFlipAnimation from "../components/CardWithFlipAnimation";
 function Home1() {
   const { fetchTotalCartSum } = useContext(ShopContext); // Access totalCartSum and authToken from the context
 
@@ -23,6 +25,8 @@ function Home1() {
       <Hero3 />
       <Hero4 />
       <Hero5 />
+      <Hero6 />
+      {/* <CardWithFlipAnimation /> */}
     </div>
   );
 }
