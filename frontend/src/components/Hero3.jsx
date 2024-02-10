@@ -1,6 +1,5 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
 import React, { useLayoutEffect, useRef } from "react";
 import SplitTextJS from "split-text-js";
 function Hero3() {
@@ -8,36 +7,32 @@ function Hero3() {
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger); // Register the ScrollTrigger plugin
-    gsap.registerPlugin(SplitText); // Register the ScrollTrigger plugin
+    // gsap.registerPlugin(SplitText); // Register the ScrollTrigger plugin
 
     let ctx = gsap.context(() => {
-      let SplitGreat = new SplitText("#para", {
-        type: "words,chars",
-      });
-      let chars = SplitGreat.chars;
+      // let SplitGreat = new SplitText("#para", {
+      //   type: "words,chars",
+      // });
+      // let chars = SplitGreat.chars;
 
-      gsap.from(
-        chars,
-        {
-          opacity: 0,
-          duration: 1,
-          y: 10,
-          ease: "circ.out",
-          stagger: 0.003,
-          scrollTrigger: {
-            trigger: comp.current,
-            // markers: true,
-            start: "0% 40%",
-            end: "150% 40%",
-            toggleActions: "play reverse play reverse",
-            pin: true,
-          },
-          // onComplete: () => {
-          //   SplitGreat.revert();
-          // },
+      gsap.from("#para", {
+        opacity: 0,
+        duration: 1,
+        x: -40,
+        // ease: "circ.out",
+        // stagger: 0.003,
+        scrollTrigger: {
+          trigger: comp.current,
+          // markers: true,
+          start: "0% 40%",
+          end: "150% 40%",
+          toggleActions: "play reverse play reverse",
+          pin: true,
         },
-        "+=0"
-      );
+        // onComplete: () => {
+        //   SplitGreat.revert();
+        // },
+      });
       gsap.to("#label", {
         rotation: 180, // Initial rotation value
         duration: 1,
