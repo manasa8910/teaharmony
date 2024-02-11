@@ -49,7 +49,7 @@ function Product() {
         const authToken = localStorage.getItem("auth-token");
         if (authToken) {
           const response = await fetch(
-            `http://localhost:4000/cart/${productId}`,
+            `https://tea-harmony.onrender.com/cart/${productId}`,
             {
               method: "GET",
               headers: {

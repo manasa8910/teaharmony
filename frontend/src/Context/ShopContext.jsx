@@ -16,7 +16,7 @@ const ShopContextProvider = (props) => {
   const authToken = localStorage.getItem("auth-token");
 
   useEffect(() => {
-    fetch("http://localhost:4000/allproducts").then((response) => {
+    fetch("https://tea-harmony.onrender.com/allproducts").then((response) => {
       response.json().then((data) => {
         console.log("fetched");
         setAll_Product(data);
@@ -28,7 +28,7 @@ const ShopContextProvider = (props) => {
   const fetchTotalCartSum = async () => {
     if (authToken) {
       try {
-        const response = await fetch("http://localhost:4000/user", {
+        const response = await fetch("https://tea-harmony.onrender.com/user", {
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -59,7 +59,7 @@ const ShopContextProvider = (props) => {
   const fetchCartValues = async () => {
     if (authToken) {
       try {
-        const response = await fetch("http://localhost:4000/user", {
+        const response = await fetch("https://tea-harmony.onrender.com/user", {
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -88,7 +88,7 @@ const ShopContextProvider = (props) => {
   const fetchOrderValues = async () => {
     if (authToken) {
       try {
-        const response = await fetch("http://localhost:4000/user", {
+        const response = await fetch("https://tea-harmony.onrender.com/user", {
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -122,7 +122,7 @@ const ShopContextProvider = (props) => {
   const login = async () => {
     console.log("login", formData);
     let responseData;
-    await fetch("http://localhost:4000/login", {
+    await fetch("https://tea-harmony.onrender.com/login", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -143,7 +143,7 @@ const ShopContextProvider = (props) => {
   const signup = async () => {
     console.log("signup", formData);
     let responseData;
-    await fetch("http://localhost:4000/signup", {
+    await fetch("https://tea-harmony.onrender.com/signup", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -171,7 +171,7 @@ const ShopContextProvider = (props) => {
   const updateCart = async (itemId, operation) => {
     if (localStorage.getItem("auth-token")) {
       try {
-        const response = await fetch("http://localhost:4000/cart", {
+        const response = await fetch("https://tea-harmony.onrender.com/cart", {
           method: "POST",
           headers: {
             Accept: "application/form-data",
@@ -197,13 +197,16 @@ const ShopContextProvider = (props) => {
 
   const fetchCartData = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:4000/cart/${productId}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "auth-token": localStorage.getItem("auth-token"),
-        },
-      });
+      const response = await fetch(
+        `https://tea-harmony.onrender.com/cart/${productId}`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "auth-token": localStorage.getItem("auth-token"),
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -220,13 +223,16 @@ const ShopContextProvider = (props) => {
 
   const clearCartData = async () => {
     try {
-      const response = await fetch("http://localhost:4000/clear-cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("auth-token"),
-        },
-      });
+      const response = await fetch(
+        "https://tea-harmony.onrender.com/clear-cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("auth-token"),
+          },
+        }
+      );
 
       if (response.ok) {
         console.log("Cart data cleared successfully");

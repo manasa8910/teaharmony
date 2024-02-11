@@ -64,7 +64,7 @@ function Cart() {
   }
 
   function sendOrderData() {
-    fetch("http://localhost:4000/order", {
+    fetch("https://tea-harmony.onrender.com/order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
