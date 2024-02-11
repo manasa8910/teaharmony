@@ -24,7 +24,8 @@
     "react-router-dom": "^6.21.1",
     "split-text": "^1.0.0",
     "split-text-js": "^1.0.3",
-    "three": "^0.160.0"
+    "three": "^0.160.0",
+    "vanilla-tilt": "^1.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

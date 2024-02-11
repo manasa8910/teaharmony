@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useLayoutEffect, useRef } from "react";
 import Button from "./Button";
 import TextPlugin from "gsap/TextPlugin";
+import VanillaTilt from "vanilla-tilt";
 const teaWareCards = [
   {
     productId: 23,
