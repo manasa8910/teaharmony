@@ -46,20 +46,20 @@ function Header1() {
       navigationMenu.current.classList.remove("left-[100vw]");
       navigationMenu.current.classList.add("left-[0vw]");
       navigationMenu.current.classList.remove("delay-300");
-      img1.current.classList.add("rotate-x-[-5deg]", "delay-500");
-      img2.current.classList.add(
+      img4.current.classList.add("rotate-x-[-5deg]", "delay-500");
+      img3.current.classList.add(
         "translate-y-[100px]",
         "scale-110",
         "rotate-x-[-6deg]",
         "delay-500"
       );
-      img3.current.classList.add(
+      img2.current.classList.add(
         "translate-y-[200px]",
         "scale-[1.2]",
         "rotate-x-[-7deg]",
         "delay-500"
       );
-      img4.current.classList.add(
+      img1.current.classList.add(
         "translate-y-[300px]",
         "scale-[1.3]",
         "rotate-x-[-8deg]",
@@ -71,20 +71,20 @@ function Header1() {
       navigationMenu.current.classList.remove("left-[0vw]");
       navigationMenu.current.classList.add("left-[100vw]");
       navigationMenu.current.classList.add("delay-300");
-      img1.current.classList.remove("rotate-x-[-5deg]", "delay-500");
-      img2.current.classList.remove(
+      img4.current.classList.remove("rotate-x-[-5deg]", "delay-500");
+      img3.current.classList.remove(
         "translate-y-[100px]",
         "scale-110",
         "rotate-x-[-6deg]",
         "delay-500"
       );
-      img3.current.classList.remove(
+      img2.current.classList.remove(
         "translate-y-[200px]",
         "scale-[1.2]",
         "rotate-x-[-7deg]",
         "delay-500"
       );
-      img4.current.classList.remove(
+      img1.current.classList.remove(
         "translate-y-[300px]",
         "scale-[1.3]",
         "rotate-x-[-8deg]",
@@ -180,18 +180,36 @@ function Header1() {
         <div className="overflow-hidden w-full h-full mt-4">
           <div className="m-auto w-1/2  relative perspective-[200px]">
             <div
+              ref={img4}
               onClick={handleButtonEvent}
-              ref={img1}
-              className=" absolute transform transform-style-3d   duration-500  "
+              className=" absolute transform transform-style-3d  duration-500    "
             >
-              <NavLink to="/">
+              <NavLink to="/about">
                 <div className=" block w-min">
-                  <div className="tag font-bold italic">Home</div>
+                  <div className="tag font-bold italic">About Us</div>
                 </div>
                 <img
                   className=" h-[500px] w-[900px] object-contain object-top"
-                  src="/assets/nav/home.png"
-                  alt="home"
+                  src="/assets/nav/about.png"
+                  alt="about"
+                />
+              </NavLink>
+            </div>
+
+            <div
+              ref={img3}
+              onClick={handleButtonEvent}
+              className=" absolute transform transform-style-3d  
+             duration-500  "
+            >
+              <NavLink to="/teaware">
+                <div className=" block w-min">
+                  <div className="tag font-bold italic">Teaware</div>
+                </div>
+                <img
+                  className=" h-[500px] w-[900px] object-contain object-top"
+                  src="/assets/nav/teaware.png"
+                  alt="teaware"
                 />
               </NavLink>
             </div>
@@ -212,36 +230,20 @@ function Header1() {
                 />
               </NavLink>
             </div>
+
             <div
-              ref={img3}
               onClick={handleButtonEvent}
-              className=" absolute transform transform-style-3d  
-             duration-500  "
+              ref={img1}
+              className=" absolute transform transform-style-3d   duration-500  "
             >
-              <NavLink to="/teaware">
+              <NavLink to="/">
                 <div className=" block w-min">
-                  <div className="tag font-bold italic">Teaware</div>
+                  <div className="tag font-bold italic">Home</div>
                 </div>
                 <img
                   className=" h-[500px] w-[900px] object-contain object-top"
-                  src="/assets/nav/teaware.png"
-                  alt="teaware"
-                />
-              </NavLink>
-            </div>
-            <div
-              ref={img4}
-              onClick={handleButtonEvent}
-              className=" absolute transform transform-style-3d  duration-500    "
-            >
-              <NavLink to="/about">
-                <div className=" block w-min">
-                  <div className="tag font-bold italic">About Us</div>
-                </div>
-                <img
-                  className=" h-[500px] w-[900px] object-contain object-top"
-                  src="/assets/nav/about.png"
-                  alt="about"
+                  src="/assets/nav/home.png"
+                  alt="home"
                 />
               </NavLink>
             </div>

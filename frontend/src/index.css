@@ -301,13 +301,6 @@ input:focus {
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   transition: clip-path 1s;
 }
-/* css gradient */
-/* #top {
-  background-image: linear-gradient(black, #202020);
-}
-#bottom {
-  background-image: linear-gradient(#202020, black);
-} */
 
 /* card tilt dropdown */
 .contentBx {
@@ -565,10 +558,11 @@ input:focus {
 
 .waveBg {
   background: linear-gradient(90deg, #454545, #707070),
-    url("https://images.unsplash.com/photo-1567922045116-2a00fae2ed03?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    url("https://images.unsplash.com/photo-1531969179221-3946e6b5a5e7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-blend-mode: screen;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 /* drop */

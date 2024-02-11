@@ -83,7 +83,9 @@ function Hero4() {
           </div>
         </div>
         <div className="para text-center md:text-left">
-          <Button text="View Our Gallery" />
+          <a href="https://manasa8910.github.io/galleryTH/" target="_blank">
+            <Button text="View Our Gallery" />
+          </a>
         </div>
       </div>
     </div>

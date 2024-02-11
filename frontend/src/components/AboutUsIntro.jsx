@@ -8,8 +8,8 @@ function AboutUsIntro() {
         <section className="min-h-[93vh] w-full flex flex-col md:flex-row justify-center items-center p-1">
           <div className=" p-8 md:p-[10vh] ">
             <img
-              className=" rounded-lg md:rounded-3xl brightness-[160%] md:w-[28vw] object-cover "
-              src="https://images.unsplash.com/photo-1567922045116-2a00fae2ed03?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              className=" rounded-lg md:rounded-3xl md:w-[28vw] object-cover "
+              src="https://images.unsplash.com/photo-1531969179221-3946e6b5a5e7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt=""
             />
           </div>
