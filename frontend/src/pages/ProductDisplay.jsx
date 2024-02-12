@@ -17,6 +17,9 @@ function ProductDisplay({ type }) {
   useEffect(() => {
     // Show filters by default on screens larger than LG
     window.scrollTo(0, 0);
+
+    document.body.style.overflow = "auto";
+
     if (window.innerWidth >= 1024) {
       setShowFilters(true);
     }
@@ -121,7 +124,10 @@ function ProductDisplay({ type }) {
       <Banner type={type} />
 
       {/* Product Type Heading */}
-      <div className=" font-extrabold text-gray-600 text-xl md:text-2xl lg:text-3xl xl:text-4xl h-[7vh] w-full my-3 flex items-center gap-3 lg:gap-8 ">
+      <div
+        id="typeHeading"
+        className=" font-extrabold text-gray-600 text-xl md:text-2xl lg:text-3xl xl:text-4xl h-[7vh] w-full my-3 flex items-center gap-3 lg:gap-8 "
+      >
         <div className="min-w-max ml-4">
           {type === "Tea" ? "TEA" : "TEAWARE"} COLLECTIONS
         </div>
@@ -225,7 +231,6 @@ function ProductDisplay({ type }) {
         <div className="mx-auto grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredProducts
             .filter((item) => {
-              // Check if the item's type matches the current type prop
               return type === item.type;
             })
             .map((item) => (

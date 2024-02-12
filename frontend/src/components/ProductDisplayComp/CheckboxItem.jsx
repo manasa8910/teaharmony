@@ -1,10 +1,21 @@
 import React from "react";
 
 function CheckboxItem({ label, value, checked, onChange }) {
+  const handleCheckboxClick = () => {
+    // Scroll to a particular element when checkbox is clicked
+    const element = document.getElementById("typeHeading"); // Replace "elementId" with the actual id of the element you want to scroll to
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop,
+        behavior: "smooth", // Add smooth scrolling effect
+      });
+    }
+  };
   return (
     <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
       <div className="flex items-center ps-3">
         <input
+          onClick={handleCheckboxClick}
           key={value}
           type="checkbox"
           value={value}

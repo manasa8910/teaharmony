@@ -1,12 +1,14 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import { useLocation } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Hero1() {
   const comp = useRef(null);
   const [allowScroll, setAllowScroll] = useState(false);
+  const location = useLocation(); // Get the current location
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -79,6 +81,7 @@ function Hero1() {
       videoArray.forEach((video) => video.remove());
       document.getElementById("top").style.backgroundColor = "black";
       document.getElementById("bottom").style.backgroundColor = "black";
+
       setAllowScroll(true);
     };
 
@@ -93,8 +96,6 @@ function Hero1() {
       });
       ctx.revert();
     };
-
-    return () => ctx.revert();
   }, []);
 
   useEffect(() => {

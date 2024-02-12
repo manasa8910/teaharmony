@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import AboutUs from "./pages/AboutUs";
@@ -11,54 +11,35 @@ import Orders from "./pages/Orders";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 
-const Loader = () => {
-  return (
-    <div className="bg-black h-[100vh] w-[100vw] flex justify-center items-center font-sans font-bold text-white text-4xl">
-      Loading...
-    </div>
-  );
-};
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setIsLoading(false);
-  });
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <div>
-          <BrowserRouter>
-            <Header />
-            {/* <Header /> */}
+      <div>
+        <BrowserRouter>
+          <Header />
+          {/* <Header /> */}
 
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/about" element={<AboutUs />} />
-              <Route exact path="/orders" element={<Orders />} />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/about" element={<AboutUs />} />
+            <Route exact path="/orders" element={<Orders />} />
 
-              <Route
-                exact
-                path="/tea"
-                element={<ProductDisplay type="Tea" />}
-              />
-              <Route
-                exact
-                path="/teaware"
-                element={<ProductDisplay type="Teaware" />}
-              />
-              <Route exact path="/cart" element={<Cart />} />
+            <Route exact path="/tea" element={<ProductDisplay type="Tea" />} />
+            <Route
+              exact
+              path="/teaware"
+              element={<ProductDisplay type="Teaware" />}
+            />
+            <Route exact path="/cart" element={<Cart />} />
 
-              <Route path="product" element={<Product />}>
-                <Route path=":productId" element={<Product />}></Route>
-              </Route>
-            </Routes>
+            <Route path="product" element={<Product />}>
+              <Route path=":productId" element={<Product />}></Route>
+            </Route>
+          </Routes>
 
-            <Footer />
-          </BrowserRouter>
-        </div>
-      )}
+          <Footer />
+        </BrowserRouter>
+      </div>
     </>
   );
 }

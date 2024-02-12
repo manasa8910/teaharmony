@@ -96,7 +96,7 @@ function Hero2() {
       ref={comp}
       className="h-[50vh] text-gray-300  w-full text-center py-36"
     >
-      <div className="font-bold text-3xl lg:text-5xl lg:pb-5">
+      <div className="font-bold text-3xl lg:text-5xl mt-[-6vh] lg:pb-5">
         <div className="para1 inline-block">Discover&nbsp;</div>
         <div className="para2 inline-block">the&nbsp;</div>
         <div className="para3 inline-block">Art</div>

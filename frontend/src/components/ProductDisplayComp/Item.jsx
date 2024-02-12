@@ -6,7 +6,8 @@ function Item(props) {
   return (
     <Link to={`/product/${props.id}`}>
       <div className="">
-        <div className="w-[320px] p-2 shadow-md rounded-xl mb-4 min-h-[470px] hover:bg-gray-100 hover:scale-105 transform duration-100 ease-in-out cursor-pointer ">
+        <div className="flex-grow min-w-[200px] max-w-[350px] p-2 shadow-md rounded-xl mb-4 min-h-[470px] hover:bg-gray-100 hover:scale-105 transform duration-100 ease-in-out cursor-pointer ">
+          {/* <div className="w-[320px] p-2 shadow-md rounded-xl mb-4 min-h-[470px] hover:bg-gray-100 hover:scale-105 transform duration-100 ease-in-out cursor-pointer "> */}
           <img
             src={props.image}
             alt={props.name}
