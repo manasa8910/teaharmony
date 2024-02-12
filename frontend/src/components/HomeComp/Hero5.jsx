@@ -1,7 +1,10 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useLayoutEffect, useRef } from "react";
-import Button from "./Button";
+import Button from "../Button";
+import TextPlugin from "gsap/TextPlugin";
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(TextPlugin);
 
 const teaWareCategories = [
   "Ceramic",
@@ -42,13 +45,6 @@ function Hero5() {
       }
     });
 
-    VanillaTilt.init(document.querySelectorAll(".tilt"), {
-      max: 25,
-      speed: 400,
-    });
-
-    gsap.registerPlugin(ScrollTrigger);
-
     let ctx = gsap.context(() => {
       gsap.to("#clipPath", {
         clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
@@ -72,7 +68,6 @@ function Hero5() {
       gsap.from(".circle", {
         duration: 0.5,
         opacity: 0,
-        x: -30,
         scrollTrigger: {
           trigger: "#clipPath",
           start: "0% 50%",
@@ -98,19 +93,18 @@ function Hero5() {
       });
     }, comp);
 
+    const onMouseEnter = (circle) => {
+      gsap.to(circle, { scale: 1.2, duration: 0.3 });
+    };
+
+    const onMouseLeave = (circle) => {
+      gsap.to(circle, { scale: 1, duration: 0.3 });
+    };
+
     const circles = document.querySelectorAll(".circle");
-
     circles.forEach((circle) => {
-      const onMouseEnter = () => {
-        gsap.to(circle, { scale: 1.2, duration: 0.3 });
-      };
-
-      const onMouseLeave = () => {
-        gsap.to(circle, { scale: 1, duration: 0.3 });
-      };
-
-      circle.addEventListener("mouseenter", onMouseEnter);
-      circle.addEventListener("mouseleave", onMouseLeave);
+      circle.addEventListener("mouseenter", () => onMouseEnter(circle));
+      circle.addEventListener("mouseleave", () => onMouseLeave(circle));
     });
     return () => ctx.revert();
   }, []);
@@ -161,9 +155,6 @@ function Hero5() {
             <div className="hidden md:block w-[100vw] text-center mt-[3vh]">
               <Button text="View All" />
             </div>
-            <div className="hidden md:block text-sm font-normal w-full text-center mt-[7vh] scrollDown">
-              Scroll Down ￬
-            </div>
           </div>
         </div>
 
@@ -211,10 +202,11 @@ function Hero5() {
             <div className="hidden md:block w-[100vw] text-center mt-[3vh]">
               <Button text="View All" />
             </div>
-            <div className="hidden md:block text-sm font-normal w-full text-center mt-[7vh] scrollDown">
-              Scroll Down ￬
-            </div>
           </div>
+        </div>
+
+        <div className="hidden md:block text-sm font-normal absolute bottom-[5vh] w-full text-center mt-[7vh] scrollDown z-20">
+          Scroll Down ￬
         </div>
       </div>
     </div>

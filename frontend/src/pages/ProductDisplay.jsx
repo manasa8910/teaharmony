@@ -38,16 +38,6 @@ function ProductDisplay({ type }) {
     }
   };
 
-  const uniqueCategories = Array.from(
-    new Set(
-      all_product
-        .filter((item) => {
-          return type === item.type;
-        })
-        .map((item) => item.category)
-    )
-  );
-
   const applyPriceFilter = (item) => {
     if (selectedPriceFilter === "lowToHigh") {
       return item.price;
@@ -60,6 +50,47 @@ function ProductDisplay({ type }) {
   const applyCategoryFilter = (item) => {
     if (selectedCategories.length === 0) return true; // No category filter applied
     return selectedCategories.includes(item.category);
+  };
+
+  const handleRatingChange = (e) => {
+    const selectedValue = e.target.value;
+    setSelectedRating(
+      selectedValue === "all" ? null : parseFloat(selectedValue)
+    );
+  };
+
+  const handlePriceFilterChange = (e) => {
+    const selectedValue = e.target.value;
+    setSelectedPriceFilter(selectedValue === "all" ? null : selectedValue);
+  };
+
+  const uniqueCategories = Array.from(
+    new Set(
+      all_product
+        .filter((item) => {
+          return type === item.type;
+        })
+        .map((item) => item.category)
+    )
+  );
+
+  const handleCategoryChange = (category) => {
+    const updatedCategories = [...selectedCategories];
+    if (updatedCategories.includes(category)) {
+      // If the category is already selected, remove it
+      const index = updatedCategories.indexOf(category);
+      updatedCategories.splice(index, 1);
+    } else {
+      // If the category is not selected, add it
+      updatedCategories.push(category);
+    }
+    setSelectedCategories(updatedCategories);
+  };
+  const handleClearFilters = () => {
+    setSearchInput("");
+    setSelectedRating(null);
+    setSelectedPriceFilter(null);
+    setSelectedCategories([]);
   };
 
   const filteredProducts = all_product
@@ -84,37 +115,6 @@ function ProductDisplay({ type }) {
 
       return priceA - priceB;
     });
-
-  const handleRatingChange = (e) => {
-    const selectedValue = e.target.value;
-    setSelectedRating(
-      selectedValue === "all" ? null : parseFloat(selectedValue)
-    );
-  };
-
-  const handlePriceFilterChange = (e) => {
-    const selectedValue = e.target.value;
-    setSelectedPriceFilter(selectedValue === "all" ? null : selectedValue);
-  };
-
-  const handleCategoryChange = (category) => {
-    const updatedCategories = [...selectedCategories];
-    if (updatedCategories.includes(category)) {
-      // If the category is already selected, remove it
-      const index = updatedCategories.indexOf(category);
-      updatedCategories.splice(index, 1);
-    } else {
-      // If the category is not selected, add it
-      updatedCategories.push(category);
-    }
-    setSelectedCategories(updatedCategories);
-  };
-  const handleClearFilters = () => {
-    setSearchInput("");
-    setSelectedRating(null);
-    setSelectedPriceFilter(null);
-    setSelectedCategories([]);
-  };
 
   return (
     <>

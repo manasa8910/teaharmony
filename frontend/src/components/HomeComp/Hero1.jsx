@@ -6,7 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Hero1() {
   const comp = useRef(null);
-
   const [allowScroll, setAllowScroll] = useState(false);
 
   useLayoutEffect(() => {
@@ -75,12 +74,25 @@ function Hero1() {
     });
 
     const videos = document.querySelectorAll(".smoke");
-    videos.forEach((video) => {
+    const videoArray = Array.from(videos);
+    const handleVideoEnd = () => {
+      videoArray.forEach((video) => video.remove());
+      document.getElementById("top").style.backgroundColor = "black";
+      document.getElementById("bottom").style.backgroundColor = "black";
+      setAllowScroll(true);
+    };
+
+    videoArray.forEach((video) => {
       video.playbackRate = 1.5;
-      video.addEventListener("ended", () => {
-        setAllowScroll(true);
-      });
+      video.addEventListener("ended", handleVideoEnd);
     });
+
+    return () => {
+      videoArray.forEach((video) => {
+        video.removeEventListener("ended", handleVideoEnd);
+      });
+      ctx.revert();
+    };
 
     return () => ctx.revert();
   }, []);
@@ -100,16 +112,16 @@ function Hero1() {
         ref={comp}
         className="h-[94vh] text-white w-full  overflow-hidden relative"
       >
+        <video
+          className="smoke top-0"
+          src="/assets/videos/smoke.mp4"
+          autoPlay
+          muted
+        ></video>
         <div
           id="top"
           className="w-full h-[47vh] absolute top-0 z-10 overflow-hidden"
         >
-          <video
-            className="smoke top-0"
-            src="/assets/videos/smoke.mp4"
-            autoPlay
-            muted
-          ></video>
           <div
             className="absolute top-[50%] left-1/2 font-black transform translate-x-[-50%] translate-y-[-50%] mt-[25.5vh] font-sans "
             style={{
@@ -154,12 +166,6 @@ function Hero1() {
           id="bottom"
           className="h-[47vh] w-full absolute bottom-0 overflow-hidden"
         >
-          <video
-            className="smoke bottom-0"
-            src="/assets/videos/smoke.mp4"
-            autoPlay
-            muted
-          ></video>
           <div
             className="absolute top-1/2 left-1/2  font-black transform translate-x-[-50%] translate-y-[-50%] mt-[-21.5vh] font-sans "
             style={{
@@ -193,9 +199,9 @@ function Hero1() {
               <span>N</span>
               <span>Y</span>
             </div>
-            <div className="text-sm font-normal w-full text-center absolute mt-[20vh] scrollDown">
-              Scroll Down ￬
-            </div>
+          </div>
+          <div className="text-sm font-normal w-full text-center absolute bottom-[5vh] scrollDown">
+            Scroll Down ￬
           </div>
         </div>
       </div>

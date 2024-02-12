@@ -1,38 +1,29 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import TextPlugin from "gsap/TextPlugin";
 import React, { useLayoutEffect, useRef } from "react";
 import SplitTextJS from "split-text-js";
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(TextPlugin);
+
 function Hero3() {
   const comp = useRef(null);
-
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger); // Register the ScrollTrigger plugin
-    // gsap.registerPlugin(SplitText); // Register the ScrollTrigger plugin
-
     let ctx = gsap.context(() => {
-      // let SplitGreat = new SplitText("#para", {
-      //   type: "words,chars",
-      // });
-      // let chars = SplitGreat.chars;
-
-      gsap.from("#para", {
-        opacity: 0,
-        duration: 1,
-        x: -40,
-        // ease: "circ.out",
-        // stagger: 0.003,
+      gsap.to("#para", {
+        text: "Welcome to Tea Harmony, where passion meets perfection in every sip. Immerse yourself in the world of handcrafted teas and exquisite accessories curated to elevate your tea experience. From the soothing embrace of herbal blends to the bold richness of black teas, each cup tells a story of craftsmanship and dedication.",
+        stagger: 1,
+        duration: 2,
         scrollTrigger: {
           trigger: comp.current,
           // markers: true,
           start: "0% 40%",
           end: "150% 40%",
-          toggleActions: "play reverse play reverse",
+          toggleActions: "play reset play reset",
           pin: true,
         },
-        // onComplete: () => {
-        //   SplitGreat.revert();
-        // },
       });
+
       gsap.to("#label", {
         rotation: 180, // Initial rotation value
         duration: 1,
@@ -40,17 +31,7 @@ function Hero3() {
           trigger: comp.current,
           //markers: true,
           start: "0% 40%",
-          end: "150% 40%", //scrub: true,
-          toggleActions: "play reverse play reverse",
-        },
-      });
-      gsap.from("#para", {
-        opacity: 0,
-        scrollTrigger: {
-          trigger: comp.current,
-          //markers: true,
-          start: "0% 40%",
-          end: "150% 40%", //scrub: true,
+          end: "150% 40%",
           toggleActions: "play reverse play reverse",
         },
       });
@@ -62,8 +43,6 @@ function Hero3() {
           //markers: true,
           start: "0% 40%",
           end: "150% 40%",
-
-          //scrub: true,
           toggleActions: "restart reset restart reset",
         },
       });
@@ -101,13 +80,7 @@ function Hero3() {
       <div
         id="para"
         className="p-5 mt-[-15vh] text-xl font-semibold mx-2 lg:w-2/3 m-auto border-r-2 border-gray-500 bg-black bg-opacity-35 lg:bg-none border-b-2 rounded-2xl lg:ml-[20vh] lg:mt-0"
-      >
-        Welcome to Tea Harmony, where passion meets perfection in every sip.
-        Immerse yourself in the world of handcrafted teas and exquisite
-        accessories curated to elevate your tea experience. From the soothing
-        embrace of herbal blends to the bold richness of black teas, each cup
-        tells a story of craftsmanship and dedication.
-      </div>
+      ></div>
       <div
         id="label"
         className=" mt-[-50px] ml-[70vw] lg:ml-[35vw] flex items-center justify-center h-[100px] w-[100px]"

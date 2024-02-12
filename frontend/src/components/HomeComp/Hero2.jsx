@@ -1,14 +1,14 @@
 import React, { useLayoutEffect, useRef } from "react";
-import Button from "./Button";
+import Button from "../Button";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { NavLink } from "react-router-dom";
+gsap.registerPlugin(ScrollTrigger);
 
 function Hero2() {
   const comp = useRef(null);
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger); // Register the ScrollTrigger plugin
-
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -98,7 +98,7 @@ function Hero2() {
     >
       <div className="font-bold text-3xl lg:text-5xl lg:pb-5">
         <div className="para1 inline-block">Discover&nbsp;</div>
-        <div className="para2 inline-block">the&nbsp;&nbsp;</div>
+        <div className="para2 inline-block">the&nbsp;</div>
         <div className="para3 inline-block">Art</div>
       </div>
       <div className="font-bold text-3xl lg:text-5xl pb-5">
@@ -110,7 +110,9 @@ function Hero2() {
         Indulge in a Symphony of Flavors and Aromas
       </p>
       <div className="para8">
-        <Button text="Explore Our Collection" />
+        <NavLink to="/tea">
+          <Button text="Explore Our Collection" />
+        </NavLink>
       </div>
     </div>
   );

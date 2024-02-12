@@ -1,21 +1,18 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useLayoutEffect, useRef } from "react";
-import { MdOutlineEmojiFoodBeverage } from "react-icons/md";
-import Button from "./Button";
+import Button from "../Button";
+gsap.registerPlugin(ScrollTrigger);
 
 function Hero4() {
   const comp = useRef(null);
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger); // Register the ScrollTrigger plugin
-
     let ctx = gsap.context(() => {
       gsap.from(".para", {
         opacity: 0,
         y: "+=30",
         stagger: 0.1,
-        //scale: 0.8,
         delay: 0.3,
 
         scrollTrigger: {

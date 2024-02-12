@@ -8,10 +8,10 @@ import React, {
 } from "react";
 import { BsBasket } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
-import AuthPopup from "../components/AuthPopup";
+import AuthPopup from "./AuthPopup";
 import { ShopContext } from "../Context/ShopContext";
 
-function Header1() {
+function Header() {
   const [isLogin, setIsLogin] = useState(!!localStorage.getItem("auth-token")); // Check if auth token is present
 
   useEffect(() => {
@@ -254,4 +254,4 @@ function Header1() {
   );
 }
 
-export default Header1;
+export default Header;

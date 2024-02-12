@@ -547,7 +547,7 @@ input:focus {
 .smoke {
   position: absolute;
   object-fit: cover;
-  height: 94vh;
+  height: 100%;
   width: 100%;
   max-width: none;
   margin: 0;

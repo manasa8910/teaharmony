@@ -1,12 +1,31 @@
-import React from "react";
-import Hero from "../components/Hero";
+import React, { useContext, useEffect } from "react";
+
+import Hero1 from "../components/HomeComp/Hero1";
+import Hero2 from "../components/HomeComp/Hero2";
+import Hero3 from "../components/HomeComp/Hero3";
+import Hero4 from "../components/HomeComp/Hero4";
+import Hero5 from "../components/HomeComp/Hero5";
+import Hero6 from "../components/HomeComp/Hero6";
+import ScrollProgressBar from "../components/HomeComp/ScrollProgressBar";
+import ThreeJsCanvas from "../components/HomeComp/ThreeJsCanvas";
+
+import { ShopContext } from "../Context/ShopContext";
 function Home() {
+  const { fetchTotalCartSum } = useContext(ShopContext); // Access totalCartSum and authToken from the context
+
+  useEffect(() => {
+    fetchTotalCartSum();
+  }, []);
   return (
-    <div
-      id="home"
-      className=" w-full h-[91.5vh] overflow-y-auto pr-2  box-content perspective-[10px] overflow-x-hidden "
-    >
-      <Hero />
+    <div className=" mt-[7vh] overflow-hidden">
+      <ScrollProgressBar />
+      <ThreeJsCanvas />
+      <Hero1 />
+      <Hero2 />
+      <Hero3 />
+      <Hero4 />
+      <Hero5 />
+      <Hero6 />
     </div>
   );
 }

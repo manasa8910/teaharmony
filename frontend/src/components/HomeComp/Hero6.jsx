@@ -1,9 +1,9 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useLayoutEffect, useRef } from "react";
-import Button from "./Button";
-import TextPlugin from "gsap/TextPlugin";
+import Button from "../Button";
 import VanillaTilt from "vanilla-tilt";
+import TextPlugin from "gsap/TextPlugin";
 const teaWareCards = [
   {
     productId: 23,
@@ -58,6 +58,8 @@ const teaCards = [
     price: "500",
   },
 ];
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(TextPlugin);
 
 function Hero6() {
   const comp = useRef(null);
@@ -67,8 +69,6 @@ function Hero6() {
       max: 25,
       speed: 400,
     });
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.registerPlugin(TextPlugin);
 
     let ctx = gsap.context(() => {
       gsap.from(comp.current, {
@@ -113,7 +113,7 @@ function Hero6() {
         stagger: 0.1,
         scrollTrigger: {
           trigger: ".flip",
-          start: "230% 50%",
+          start: "220% 50%",
           end: "400% 50%",
           toggleActions: "play reset play reset",
           // markers: true,
@@ -201,7 +201,7 @@ function Hero6() {
       <div className=" w-[100vw]  text-center move">
         <Button text="View All" />
       </div>
-      <div className=" text-sm font-normal w-full text-center mt-[5vh] scrollDown move">
+      <div className="hidden md:block text-sm font-normal absolute bottom-[5vh] w-full text-center mt-[7vh] scrollDown z-20 move">
         Scroll Down ￬
       </div>
     </div>
