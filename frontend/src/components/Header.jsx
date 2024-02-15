@@ -177,7 +177,8 @@ function Header() {
           muted
           loop
         ></video>
-        <div className="overflow-hidden w-full h-full mt-4">
+
+        <div className="hidden md:block overflow-hidden w-full h-full mt-4">
           <div className="m-auto w-1/2  relative perspective-[200px]">
             <div
               ref={img4}
@@ -246,6 +247,72 @@ function Header() {
                   alt="home"
                 />
               </NavLink>
+            </div>
+          </div>
+        </div>
+
+        <div className="md:hidden overflow-hidden w-full h-full mt-4">
+          <div className="m-auto w-2/3  relative text-white text-center text-lg flex flex-col gap-5">
+            {isLogin && (
+              <NavLink to="/cart">
+                <div
+                  onClick={handleButtonEvent}
+                  className="bg-black rounded-lg py-2 bg-opacity-65"
+                >
+                  Cart
+                </div>
+              </NavLink>
+            )}
+
+            <NavLink to="/">
+              <div
+                onClick={handleButtonEvent}
+                className="bg-black rounded-lg py-2 bg-opacity-65"
+              >
+                Home
+              </div>
+            </NavLink>
+
+            <NavLink to="/tea">
+              <div
+                onClick={handleButtonEvent}
+                className="bg-black rounded-lg py-2 bg-opacity-65"
+              >
+                Tea
+              </div>
+            </NavLink>
+
+            <NavLink to="/teaware">
+              <div
+                onClick={handleButtonEvent}
+                className="bg-black rounded-lg py-2 bg-opacity-65"
+              >
+                Teaware
+              </div>
+            </NavLink>
+
+            <NavLink to="/about">
+              <div
+                onClick={handleButtonEvent}
+                className="bg-black rounded-lg py-2 bg-opacity-65"
+              >
+                About Us
+              </div>
+            </NavLink>
+
+            {isLogin && (
+              <NavLink to="/orders">
+                <div
+                  onClick={handleButtonEvent}
+                  className="bg-black rounded-lg py-2 bg-opacity-65"
+                >
+                  Orders
+                </div>
+              </NavLink>
+            )}
+
+            <div className="bg-black rounded-lg py-2 bg-opacity-65 cursor-pointer">
+              <AuthPopup />
             </div>
           </div>
         </div>

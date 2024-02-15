@@ -23,39 +23,50 @@ const AuthPopup = () => {
   return (
     <div className="text-lg text-black ">
       {localStorage.getItem("auth-token") ? (
-        <div className="relative">
-          <IoPersonOutline
-            className="cursor-pointer scale-[1.8] text-white"
-            onClick={handleButtonClick}
-          />
-          {isDropdownVisible && (
-            <div className=" absolute top-10 p-1 px-4 bg-white text-black font-bold text-[20px] rounded shadow-lg">
-              <NavLink onClick={handleButtonClick} to="/orders">
+        <>
+          <div className="relative hidden md:block">
+            <IoPersonOutline
+              className="cursor-pointer scale-[1.8] text-white"
+              onClick={handleButtonClick}
+            />
+            {isDropdownVisible && (
+              <div className=" absolute top-10 p-1 px-4 bg-white text-black font-bold text-[20px] rounded shadow-lg">
+                <NavLink onClick={handleButtonClick} to="/orders">
+                  <p
+                    className="hover:text-green 
+                  hover:scale-110 duration-150"
+                  >
+                    Orders
+                  </p>
+                </NavLink>
+                <hr />
                 <p
-                  className="hover:text-green 
+                  onClick={() => {
+                    localStorage.removeItem("auth-token");
+                    window.location.replace("/");
+                  }}
+                  className="hover:text-green cursor-pointer
                   hover:scale-110 duration-150"
                 >
-                  Orders
+                  Logout
                 </p>
-              </NavLink>
-              <hr />
-              <p
-                onClick={() => {
-                  localStorage.removeItem("auth-token");
-                  window.location.replace("/");
-                }}
-                className="hover:text-green cursor-pointer
-                  hover:scale-110 duration-150"
-              >
-                Logout
-              </p>
-            </div>
-          )}
-        </div>
+              </div>
+            )}
+          </div>
+          <div
+            onClick={() => {
+              localStorage.removeItem("auth-token");
+              window.location.replace("/");
+            }}
+            className="md:hidden text-white"
+          >
+            Logout
+          </div>
+        </>
       ) : (
         <button
           onClick={togglePopup}
-          className="w-[10vh] h-[4vh] outline-none border-white border-[1px] text-white text-lg cursor-pointer rounded-[75px] sweepRight"
+          className="w-[10vh] h-[4vh] outline-none border-white md:border-[1px] text-white text-lg cursor-pointer rounded-[75px] md:sweepRight"
         >
           Login
         </button>
