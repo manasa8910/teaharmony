@@ -11,6 +11,7 @@ function Item(props) {
           <img
             src={props.image}
             alt={props.name}
+            loading="lazy"
             className="h-[300px] w-full mb-2 object-cover rounded-xl "
           />
           <h3 className="text-lg font-semibold">{props.name}</h3>

@@ -162,7 +162,7 @@ function Cart() {
   }
 
   return (
-    <>
+    <div className="bg-white">
       {/* Cart */}
       <div ref={comp} className="mt-[7vh] md:max-w-[65vw] m-auto">
         <div className="font-bold text-xl md:text-4xl px-1 pt-5 ">
@@ -371,7 +371,7 @@ function Cart() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

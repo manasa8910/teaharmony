@@ -89,98 +89,100 @@ function Product() {
       : [product.img2, product.img3];
 
   return (
-    <div
-      ref={comp}
-      className="flex lg:ml-7 mt-[7vh] justify-center min-h-[100vh] h-full"
-    >
-      <div className="flex flex-col lg:flex-row">
-        {/* Left Section - Images */}
-        <div className="min-w-[60%] lg:mt-1 lg:h-[91.5vh]">
-          <Carousel images={images} />
-        </div>
-
-        {/* Right Section - Product Information */}
-        <div className="flex-2 bg-white mt-2 lg:mt-10 mx-3 lg:ml-10">
-          <h2 className="text-2xl lg:text-4xl font-bold lg:mr-20 stagger">
-            {product.name}
-          </h2>
-          <div className="flex items-center"></div>
-
-          <div className="flex gap-1 stagger">
-            <StarRating
-              rating={
-                Math.round(
-                  (product.rating.reduce(
-                    (acc, currValue) => acc + currValue,
-                    0
-                  ) /
-                    product.rating.length) *
-                    100
-                ) / 100
-              }
-            />
-            <span className="text-sm lg:text-base font-semibold">
-              ({product.rating.length})
-            </span>
+    <div className="bg-white">
+      <div
+        ref={comp}
+        className="flex lg:ml-7 mt-[7vh] justify-center min-h-[100vh] h-full"
+      >
+        <div className="flex flex-col lg:flex-row">
+          {/* Left Section - Images */}
+          <div className="min-w-[60%] lg:mt-1 lg:h-[91.5vh]">
+            <Carousel images={images} />
           </div>
 
-          <p className=" lg:text-xl text-gray-600 mb-2 font-semibold mt-2 stagger">
-            Category: {product.category}
-          </p>
+          {/* Right Section - Product Information */}
+          <div className="flex-2 bg-white mt-2 lg:mt-10 mx-3 lg:ml-10">
+            <h2 className="text-2xl lg:text-4xl font-bold lg:mr-20 stagger">
+              {product.name}
+            </h2>
+            <div className="flex items-center"></div>
 
-          <p className="lg:text-2xl font-bold mb-2 stagger">
-            ₹ {product.price}
-          </p>
-          {/* Conditional rendering based on the presence of auth token */}
-          {isLogin ? (
-            quantity === 0 ? (
-              <button
-                ref={addToCartBtn}
-                onClick={() => {
-                  setQuantity((prevQty) => prevQty + 1);
-                  updateCart(product.id, "inc");
-                }}
-                className={`bg-[#05B3A4] font-bold px-2 lg:px-5 w-32 rounded-2xl py-1 lg:py-2 stagger`}
-              >
-                Add to Cart
-              </button>
-            ) : (
-              <div
-                ref={incDecBtn}
-                className={`flex bg-[#05B3A4] font-bold px-2 lg:px-5 rounded-2xl py-1 lg:py-2 w-32 gap-5 items-center justify-center stagger`}
-              >
-                <FaMinus
-                  className=" cursor-pointer"
-                  onClick={() => {
-                    setQuantity((prevQty) => prevQty - 1);
-                    updateCart(product.id, "dec");
-                  }}
-                />
-                <span>{quantity}</span>
-                <FaPlus
-                  className=" cursor-pointer"
+            <div className="flex gap-1 stagger">
+              <StarRating
+                rating={
+                  Math.round(
+                    (product.rating.reduce(
+                      (acc, currValue) => acc + currValue,
+                      0
+                    ) /
+                      product.rating.length) *
+                      100
+                  ) / 100
+                }
+              />
+              <span className="text-sm lg:text-base font-semibold">
+                ({product.rating.length})
+              </span>
+            </div>
+
+            <p className=" lg:text-xl text-gray-600 mb-2 font-semibold mt-2 stagger">
+              Category: {product.category}
+            </p>
+
+            <p className="lg:text-2xl font-bold mb-2 stagger">
+              ₹ {product.price}
+            </p>
+            {/* Conditional rendering based on the presence of auth token */}
+            {isLogin ? (
+              quantity === 0 ? (
+                <button
+                  ref={addToCartBtn}
                   onClick={() => {
                     setQuantity((prevQty) => prevQty + 1);
                     updateCart(product.id, "inc");
                   }}
-                />
+                  className={`bg-[#05B3A4] font-bold px-2 lg:px-5 w-32 rounded-2xl py-1 lg:py-2 stagger`}
+                >
+                  Add to Cart
+                </button>
+              ) : (
+                <div
+                  ref={incDecBtn}
+                  className={`flex bg-[#05B3A4] font-bold px-2 lg:px-5 rounded-2xl py-1 lg:py-2 w-32 gap-5 items-center justify-center stagger`}
+                >
+                  <FaMinus
+                    className=" cursor-pointer"
+                    onClick={() => {
+                      setQuantity((prevQty) => prevQty - 1);
+                      updateCart(product.id, "dec");
+                    }}
+                  />
+                  <span>{quantity}</span>
+                  <FaPlus
+                    className=" cursor-pointer"
+                    onClick={() => {
+                      setQuantity((prevQty) => prevQty + 1);
+                      updateCart(product.id, "inc");
+                    }}
+                  />
+                </div>
+              )
+            ) : (
+              <div>
+                <button
+                  onClick={() => togglePopup(true)}
+                  className={`bg-[#05B3A4] font-bold px-2 lg:px-5 w-32 rounded-2xl py-1 lg:py-2 stagger`}
+                >
+                  Add to Cart
+                </button>
               </div>
-            )
-          ) : (
-            <div>
-              <button
-                onClick={() => togglePopup(true)}
-                className={`bg-[#05B3A4] font-bold px-2 lg:px-5 w-32 rounded-2xl py-1 lg:py-2 stagger`}
-              >
-                Add to Cart
-              </button>
+            )}
+            {/* Product Description */}
+            <div className="mt-4 lg:mr-20">
+              <p className="text-gray-700 font-semibold lg:text-2xl stagger">
+                {product.description}
+              </p>
             </div>
-          )}
-          {/* Product Description */}
-          <div className="mt-4 lg:mr-20">
-            <p className="text-gray-700 font-semibold lg:text-2xl stagger">
-              {product.description}
-            </p>
           </div>
         </div>
       </div>

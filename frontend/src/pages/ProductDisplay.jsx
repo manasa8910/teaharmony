@@ -120,7 +120,7 @@ function ProductDisplay({ type }) {
     });
 
   return (
-    <>
+    <div className="bg-white">
       <Banner type={type} />
 
       {/* Product Type Heading */}
@@ -255,7 +255,7 @@ function ProductDisplay({ type }) {
             ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
