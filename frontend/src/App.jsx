@@ -17,7 +17,7 @@ function App() {
         <Header />
         <Suspense
           fallback={
-            <div className="bg-black h-[100vh] w-[100vw] flex items-center justify-center text-white font-bold text-lg">
+            <div className="bg-black h-[100vh] w-[100vw] flex items-center justify-center text-white font-bold text-lg font-sans">
               Loading...
             </div>
           }

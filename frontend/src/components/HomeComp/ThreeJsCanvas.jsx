@@ -180,8 +180,10 @@ const ThreeJsCanvas = () => {
 
   return (
     <div
+      id="threeJsContainer"
       ref={containerRef}
       style={{
+        visibility: "hidden",
         position: "fixed",
         top: 0,
         left: 0,

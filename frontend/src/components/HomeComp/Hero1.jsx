@@ -5,12 +5,13 @@ import { useLocation } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Hero1() {
+function Hero1({ onHero1Load }) {
   const comp = useRef(null);
   const [allowScroll, setAllowScroll] = useState(false);
-  const location = useLocation(); // Get the current location
+  const location = useLocation();
 
   useLayoutEffect(() => {
+    onHero1Load();
     let ctx = gsap.context(() => {
       gsap.from(".title1 span ", {
         opacity: 0,
@@ -81,7 +82,7 @@ function Hero1() {
       videoArray.forEach((video) => video.remove());
       document.getElementById("top").style.backgroundColor = "black";
       document.getElementById("bottom").style.backgroundColor = "black";
-
+      document.getElementById("threeJsContainer").style.visibility = "visible";
       setAllowScroll(true);
     };
 
