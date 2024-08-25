@@ -26,7 +26,7 @@ app.use("/images", express.static("upload/images"));
 //creating api for fetching all products
 app.get("/allproducts", async (req, res) => {
   let products = await mongoose.connection.db
-    .collection("item")
+    .collection("product")
     .find({})
     .toArray();
   console.log("all products fetched");
